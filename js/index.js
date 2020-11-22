@@ -83,8 +83,9 @@ const handleAnswerSelect = (questions) => {
       addNewQuestionToDOM(questions);
     }, 1000);
   } else {
-    removeCurrentQuestionEl();
-    addResultElement(correctAnswers, questions.length);
+    setTimeout(() => {
+      addResultElement(correctAnswers, questions.length);
+    }, 1000);
   }
 };
 
