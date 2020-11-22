@@ -32,25 +32,40 @@ const createQuestionEl = ({ question, correct_answer, incorrect_answers }) => {
 };
 
 const removeCurrentQuestionEl = () => {
-  const questionEl = document.querySelector("question");
+  const questionEl = document.querySelector(".question");
 
   if (questionEl) {
     questionEl.remove();
   }
 };
 
-const addNewQuestionToDOM = (question) => {
+const setCurrentQuestionPosition = () => {
+  questionNumberEl.innerText = currentQuestionIndex + 1;
+};
+
+const addNewQuestionToDOM = (questions) => {
+  setCurrentQuestionPosition();
   removeCurrentQuestionEl();
-  const questionEl = createQuestionEl(question);
+
+  const currentQuestion = questions[currentQuestionIndex];
+  const questionEl = createQuestionEl(currentQuestion);
 
   questionEl.addEventListener("click", ({ target }) => {
     const targetValue = target.dataset.value;
 
     if (targetValue) {
-      const isCorrectAnswer = targetValue === question.correct_answer;
+      const isCorrectAnswer = targetValue === currentQuestion.correct_answer;
       const answerClass = isCorrectAnswer ? "success" : "error";
 
       target.classList.add(answerClass);
+      correctAnswers += isCorrectAnswer; // boolean in math converts to 1 or 0
+      currentQuestionIndex += 1;
+
+      if (currentQuestionIndex < questions.length - 1) {
+        setTimeout(() => {
+          addNewQuestionToDOM(questions);
+        }, 1000);
+      }
     }
   });
 
@@ -59,10 +74,9 @@ const addNewQuestionToDOM = (question) => {
 
 const init = async () => {
   const questions = await getQuestions();
-  questionNumberEl.innerText = currentQuestionIndex + 1;
   questionsQuantityEl.innerText = questions.length;
 
-  addNewQuestionToDOM(questions[currentQuestionIndex]);
+  addNewQuestionToDOM(questions);
 };
 
 init();
