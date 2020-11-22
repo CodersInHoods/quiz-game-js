@@ -1,6 +1,4 @@
 const containerEl = document.querySelector(".container");
-const questionNumberEl = document.querySelector(".question_number");
-const questionsQuantityEl = document.querySelector(".questions_quantity");
 
 let currentQuestionIndex = 0;
 let correctAnswers = 0;
@@ -29,6 +27,12 @@ const addResultElement = (correctAnswers, questionsQuantity) => {
     <p>correct answers</p>
     <button>Start again</button>
   `;
+
+  containerEl.querySelector("button").addEventListener("click", () => {
+    containerEl.classList.remove("result");
+    containerEl.innerHTML = "";
+    init();
+  });
 };
 
 const createQuestionEl = ({ question, correct_answer, incorrect_answers }) => {
@@ -50,6 +54,16 @@ const createQuestionEl = ({ question, correct_answer, incorrect_answers }) => {
   return wrapper;
 };
 
+const createHeader = (questionsQuantity) => {
+  containerEl.innerHTML = `
+  <p class="pagination">
+    <span class="question_number">0</span>/<span
+      class="questions_quantity"
+    >${questionsQuantity || 0}</span>
+  </p>
+`;
+};
+
 const removeCurrentQuestionEl = () => {
   const questionEl = document.querySelector(".question");
 
@@ -59,6 +73,7 @@ const removeCurrentQuestionEl = () => {
 };
 
 const setCurrentQuestionPosition = () => {
+  const questionNumberEl = document.querySelector(".question_number");
   questionNumberEl.innerText = currentQuestionIndex + 1;
 };
 
@@ -99,8 +114,11 @@ const addNewQuestionToDOM = (questions) => {
 };
 
 const init = async () => {
+  currentQuestionIndex = 0;
+  correctAnswers = 0;
+
   const questions = await getQuestions();
-  questionsQuantityEl.innerText = questions.length;
+  createHeader(questions.length);
 
   addNewQuestionToDOM(questions);
 };

@@ -61,17 +61,20 @@
 
 h4 {
   font-size: 2em;
+  min-height: 64px;
   text-align: center;
   margin: 0;
 }
 
 .options {
   display: grid;
+  min-height: 125px;
   list-style: none;
   padding: 0;
   margin-top: 3em;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
+  align-items: start;
   gap: 2em 1em;
 }
 
