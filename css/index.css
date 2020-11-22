@@ -1,6 +1,6 @@
 @keyframes blink_success {
   0% {
-    background-color: rgba(68, 140, 252, 0.1);
+    background-color: #448cfc;
     color: #000;
   }
   100% {
@@ -11,7 +11,7 @@
 
 @keyframes blink_error {
   0% {
-    background-color: rgba(68, 140, 252, 0.1);
+    background-color: #448cfc;
     color: #000;
   }
   100% {
@@ -90,11 +90,14 @@ h4 {
   background-color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
   transition: 0.3s;
+  display: flex;
+  align-items: center;
 }
 
 .options .option:hover {
-  background-color: rgba(68, 140, 252, 0.1);
+  background-color: rgba(68, 140, 252, 0.9);
   border: 1px solid #448cfc;
+  color: #fff;
 }
 
 .options .option.success {

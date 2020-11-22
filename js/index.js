@@ -53,6 +53,17 @@ const setCurrentQuestionPosition = () => {
   questionNumberEl.innerText = currentQuestionIndex + 1;
 };
 
+const handleAnswerSelect = (questions) => {
+  if (currentQuestionIndex < questions.length) {
+    setTimeout(() => {
+      addNewQuestionToDOM(questions);
+    }, 1000);
+  } else {
+    removeCurrentQuestionEl();
+    containerEl.innerText = `${correctAnswers} of ${questions.length} correct answers`;
+  }
+};
+
 const addNewQuestionToDOM = (questions) => {
   setCurrentQuestionPosition();
   removeCurrentQuestionEl();
@@ -71,11 +82,7 @@ const addNewQuestionToDOM = (questions) => {
       correctAnswers += isCorrectAnswer; // boolean in math converts to 1 or 0
       currentQuestionIndex += 1;
 
-      if (currentQuestionIndex < questions.length) {
-        setTimeout(() => {
-          addNewQuestionToDOM(questions);
-        }, 1000);
-      }
+      handleAnswerSelect(questions);
     }
   });
 
