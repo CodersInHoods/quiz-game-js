@@ -1,15 +1,14 @@
 const containerEl = document.querySelector(".container");
 const questionNumberEl = document.querySelector(".question_number");
 const questionsQuantityEl = document.querySelector(".questions_quantity");
+let currentQuestionIndex = 0;
 
-// Mock question object
-const mockQuestion = {
-  category: "General Knowledge",
-  type: "multiple",
-  difficulty: "medium",
-  question: "Which essential condiment is also known as Japanese horseradish?",
-  correct_answer: "Wasabi ",
-  incorrect_answers: ["Mentsuyu", "Karashi", "Ponzu"],
+const questionsURL = "https://opentdb.com/api.php?amount=10";
+
+const getQuestions = async () => {
+  const { results } = await fetch(questionsURL).then((resp) => resp.json());
+
+  return results;
 };
 
 const createQuestionEl = ({ question, correct_answer, incorrect_answers }) => {
@@ -30,5 +29,11 @@ const createQuestionEl = ({ question, correct_answer, incorrect_answers }) => {
   return wrapper;
 };
 
-// Mock DOM question element
-containerEl.appendChild(createQuestionEl(mockQuestion));
+const init = async () => {
+  const questions = await getQuestions();
+
+  const question = createQuestionEl(questions[currentQuestionIndex]);
+  containerEl.appendChild(question);
+};
+
+init();
