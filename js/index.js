@@ -31,7 +31,16 @@ const createQuestionEl = ({ question, correct_answer, incorrect_answers }) => {
   return wrapper;
 };
 
+const removeCurrentQuestionEl = () => {
+  const questionEl = document.querySelector("question");
+
+  if (questionEl) {
+    questionEl.remove();
+  }
+};
+
 const addNewQuestionToDOM = (question) => {
+  removeCurrentQuestionEl();
   const questionEl = createQuestionEl(question);
 
   questionEl.addEventListener("click", ({ target }) => {
