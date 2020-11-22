@@ -47,7 +47,6 @@ const addNewQuestionToDOM = (question) => {
     const targetValue = target.dataset.value;
 
     if (targetValue) {
-      // handle response
     }
   });
 
@@ -56,6 +55,9 @@ const addNewQuestionToDOM = (question) => {
 
 const init = async () => {
   const questions = await getQuestions();
+  questionNumberEl.innerText = currentQuestionIndex + 1;
+  questionsQuantityEl.innerText = questions.length;
+
   addNewQuestionToDOM(questions[currentQuestionIndex]);
 };
 
