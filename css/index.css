@@ -109,3 +109,40 @@ h4 {
   border-color: transparent;
   animation: blink_error 0.2s ease-in-out 3 forwards;
 }
+
+/* Result view */
+
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 3em 0;
+  border-radius: 3em;
+}
+
+.result h1 {
+  font-size: 4em;
+  color: #3e9732;
+  margin: 0;
+}
+
+.result p {
+  font-weight: bold;
+}
+
+.result button {
+  border: none;
+  padding: 0.5em 2em;
+  background-color: #448cfc;
+  color: #fff;
+  border-radius: 1em;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.result button:hover {
+  background-color: #3168c0;
+}

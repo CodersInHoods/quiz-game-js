@@ -22,6 +22,15 @@ const shuffleArray = (array) => {
   return array;
 };
 
+const addResultElement = (correctAnswers, questionsQuantity) => {
+  containerEl.classList.add("result");
+  containerEl.innerHTML = `
+    <h1>${correctAnswers}/${questionsQuantity}</h1>
+    <p>correct answers</p>
+    <button>Start again</button>
+  `;
+};
+
 const createQuestionEl = ({ question, correct_answer, incorrect_answers }) => {
   const rawAnswers = [correct_answer, ...incorrect_answers];
   const answers = shuffleArray(shuffleArray(rawAnswers));
@@ -60,7 +69,7 @@ const handleAnswerSelect = (questions) => {
     }, 1000);
   } else {
     removeCurrentQuestionEl();
-    containerEl.innerText = `${correctAnswers} of ${questions.length} correct answers`;
+    addResultElement(correctAnswers, questions.length);
   }
 };
 
