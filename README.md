@@ -9,4 +9,4 @@
 5. Show result
 6. Be able to start the a game again
 
-![Quiz app example](https://github.com/CodersInHoods/quiz-game-js/tree/master/images/example.gif)
+![Quiz app example](https://github.com/CodersInHoods/quiz-game-js/blob/master/images/example.gif)
