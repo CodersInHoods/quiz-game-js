@@ -1,7 +1,9 @@
 const containerEl = document.querySelector(".container");
 const questionNumberEl = document.querySelector(".question_number");
 const questionsQuantityEl = document.querySelector(".questions_quantity");
+
 let currentQuestionIndex = 0;
+let correctAnswers = 0;
 
 const questionsURL = "https://opentdb.com/api.php?amount=10";
 
@@ -29,11 +31,23 @@ const createQuestionEl = ({ question, correct_answer, incorrect_answers }) => {
   return wrapper;
 };
 
+const addNewQuestionToDOM = (question) => {
+  const questionEl = createQuestionEl(question);
+
+  questionEl.addEventListener("click", ({ target }) => {
+    const targetValue = target.dataset.value;
+
+    if (targetValue) {
+      // handle response
+    }
+  });
+
+  containerEl.appendChild(questionEl);
+};
+
 const init = async () => {
   const questions = await getQuestions();
-
-  const question = createQuestionEl(questions[currentQuestionIndex]);
-  containerEl.appendChild(question);
+  addNewQuestionToDOM(questions[currentQuestionIndex]);
 };
 
 init();
