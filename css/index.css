@@ -97,12 +97,12 @@ h4 {
   border: 1px solid #448cfc;
 }
 
-.options .option.correct:hover {
+.options .option.success {
   border-color: transparent;
   animation: blink_success 0.2s ease-in-out 3 forwards;
 }
 
-.options .option.error:hover {
+.options .option.error {
   border-color: transparent;
   animation: blink_error 0.2s ease-in-out 3 forwards;
 }

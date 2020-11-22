@@ -47,6 +47,10 @@ const addNewQuestionToDOM = (question) => {
     const targetValue = target.dataset.value;
 
     if (targetValue) {
+      const isCorrectAnswer = targetValue === question.correct_answer;
+      const answerClass = isCorrectAnswer ? "success" : "error";
+
+      target.classList.add(answerClass);
     }
   });
 
