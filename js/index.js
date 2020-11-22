@@ -13,8 +13,18 @@ const getQuestions = async () => {
   return results;
 };
 
+const shuffleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+
+  return array;
+};
+
 const createQuestionEl = ({ question, correct_answer, incorrect_answers }) => {
-  const answers = [correct_answer, ...incorrect_answers];
+  const rawAnswers = [correct_answer, ...incorrect_answers];
+  const answers = shuffleArray(shuffleArray(rawAnswers));
   const wrapper = document.createElement("div");
   wrapper.classList.add("question");
 
@@ -61,7 +71,7 @@ const addNewQuestionToDOM = (questions) => {
       correctAnswers += isCorrectAnswer; // boolean in math converts to 1 or 0
       currentQuestionIndex += 1;
 
-      if (currentQuestionIndex < questions.length - 1) {
+      if (currentQuestionIndex < questions.length) {
         setTimeout(() => {
           addNewQuestionToDOM(questions);
         }, 1000);
