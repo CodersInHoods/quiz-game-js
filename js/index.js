@@ -78,15 +78,13 @@ const setCurrentQuestionPosition = () => {
 };
 
 const handleAnswerSelect = (questions) => {
-  if (currentQuestionIndex < questions.length) {
-    setTimeout(() => {
+  setTimeout(() => {
+    if (currentQuestionIndex < questions.length) {
       addNewQuestionToDOM(questions);
-    }, 1000);
-  } else {
-    setTimeout(() => {
+    } else {
       addResultElement(correctAnswers, questions.length);
-    }, 1000);
-  }
+    }
+  }, 1000);
 };
 
 const addNewQuestionToDOM = (questions) => {
